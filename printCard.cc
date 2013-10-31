@@ -85,9 +85,11 @@ int main(int argc, char *argv[])
   }
   
   fitsfile *fptr;
-  int status = 0,  nkeys;  /* MUST initialize status */
+  int status = 0,  nkeys, hdutype;  /* MUST initialize status */
 
   fits_open_file(&fptr, inFile.c_str(), READONLY, &status);
+
+  fits_movabs_hdu(fptr, 1, &hdutype, &status);
   fits_get_hdrspace(fptr, &nkeys, NULL, &status);
   
 //   char keyName[] = hCard.c_str();
